@@ -5,14 +5,18 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
-- List at least two concrete bugs you noticed at the start  
-  (for example: "the secret number kept changing" or "the hints were backwards").
+It looked decent at the start, in my opinion. It had an answer requesting area, buttons to restart the game, submit a guess, and show a hint if applicable. The funniest part is the little message below the page title that says "An AI-generated guessing game. Something is off."
 
+
+- List at least two concrete bugs you noticed at the start  
+I tested the upper limit of the range (100) and the corresponding hint was "Go HIGHER!", which I personally found odd. Another weird glitch happened when I finished all of my 7 guesses; the secret number was given as 11, but checking the debug info gives me a secret number of 18. In addition, I ran a second session to test (in normal difficulty) and the game just...crashed, and refused to accept my input.
 ---
 
 ## 2. How did you use AI as a teammate?
 
 - Which AI tools did you use on this project (for example: ChatGPT, Gemini, Copilot)?
+I used GitHub Copilot
+
 - Give one example of an AI suggestion that was correct (including what the AI suggested and how you verified the result).
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
 

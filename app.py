@@ -68,13 +68,16 @@ attempt_limit_map = {
 }
 attempt_limit = attempt_limit_map[difficulty]
 
-low, high = get_range_for_difficulty(difficulty)
+if "low" not in st.session_state: # Fix (lines 71 to 76): low and high values are stored in session state, with Github Copilot
+    st.session_state.low, st.session_state.high = get_range_for_difficulty(difficulty)
+else:
+    st.session_state.low, st.session_state.high = get_range_for_difficulty(difficulty)
 
-st.sidebar.caption(f"Range: {low} to {high}")
+st.sidebar.caption(f"Range: {st.session_state.low} to {st.session_state.high}")
 st.sidebar.caption(f"Attempts allowed: {attempt_limit}")
 
 if "secret" not in st.session_state:
-    st.session_state.secret = random.randint(low, high)
+    st.session_state.secret = random.randint(st.session_state.low, st.session_state.high) # Fix: takes random.randint of session state bounds instead of hardcoded range, with Github Copilot
 
 if "attempts" not in st.session_state:
     st.session_state.attempts = 1
@@ -117,7 +120,7 @@ with col3:
 
 if new_game:
     st.session_state.attempts = 0
-    st.session_state.secret = random.randint(1, 100)
+    st.session_state.secret = random.randint(st.session_state.low, st.session_state.high)
     st.success("New game started.")
     st.rerun()
 
@@ -139,12 +142,7 @@ if submit:
     else:
         st.session_state.history.append(guess_int)
 
-        if st.session_state.attempts % 2 == 0:
-            secret = str(st.session_state.secret)
-        else:
-            secret = st.session_state.secret
-
-        outcome, message = check_guess(guess_int, secret)
+        outcome, message = check_guess(guess_int, st.session_state.secret) # Fix: edited type mismatch with Github Copilot
 
         if show_hint:
             st.warning(message)

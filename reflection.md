@@ -21,7 +21,7 @@ I used GitHub Copilot.
 An AI suggestion that was correct was an analysis on why the game returned "Go HIGHER!" despite the guess being higher than the 100 range, which was due to the incorrect ">" signage. Copilot suggested flipping the sign and refactoring the code int logic_utils.py, which I verified by testing different scores manually.
 
 - Give one example of an AI suggestion that was incorrect or misleading (including what the AI suggested and how you verified the result).
-An AI suggestion that was misleading was an analysis of why several AI-run tests of the refactored check_guess code were failing, which was purportedly due to "check_guess is executing, but tests expect a single string while function returns a tuple (outcome, message)". The tests themselves were incorrect, but my own manual tests were valid.
+An AI suggestion that was misleading was an analysis of the second bug I was having (the issue with the "secret number" changing). It explained the issues, but the lines it suggested I should fix were not  the correct ones. I verified this by manually searching through the lines and identifying the spots for the FIXME comments.
 
 ---
 

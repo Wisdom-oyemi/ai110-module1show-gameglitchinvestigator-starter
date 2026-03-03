@@ -28,9 +28,14 @@ An AI suggestion that was misleading was an analysis of the second bug I was hav
 ## 3. Debugging and testing your fixes
 
 - How did you decide whether a bug was really fixed?
+I simply ran streamlit in the terminal to have the game render in my web browser, and played through several rounds (with different outputs) to compare the behavior against the buggy-ness I previously noted.
+
 - Describe at least one test you ran (manual or using pytest)  
   and what it showed you about your code.
+The main pytest I ran was for check_guess to return the proper inputs. In that specific case, the test was ran to ensure the correct output for the guess being higher/lower than the secret number, and it showed me that the code previously had incorrect range handling.
+
 - Did AI help you design or understand any tests? How?
+Github Copilot helped me understand the tests for both the game-reset feature and the check_guess feature, by explaining in detail what the tests are checking for and suggesting edits to the test to reflect the correct state of the game.
 
 ---
 

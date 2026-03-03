@@ -3,7 +3,7 @@ import streamlit as st
 
 from logic_utils import check_guess # FIX: Imported check_guess function using Github Copilot
 
-def get_range_for_difficulty(difficulty: str):
+def get_range_for_difficulty(difficulty: str): # FIXME: refactor here 
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
@@ -13,7 +13,7 @@ def get_range_for_difficulty(difficulty: str):
     return 1, 100
 
 
-def parse_guess(raw: str):
+def parse_guess(raw: str): # FIXME: refactor here 
     if raw is None:
         return False, None, "Enter a guess."
 
@@ -31,7 +31,7 @@ def parse_guess(raw: str):
     return True, value, None
 
 
-def update_score(current_score: int, outcome: str, attempt_number: int):
+def update_score(current_score: int, outcome: str, attempt_number: int): # FIXME: refactor here 
     if outcome == "Win":
         points = 100 - 10 * (attempt_number + 1)
         if points < 10:
@@ -80,7 +80,7 @@ if "secret" not in st.session_state:
     st.session_state.secret = random.randint(st.session_state.low, st.session_state.high) # Fix: takes random.randint of session state bounds instead of hardcoded range, with Github Copilot
 
 if "attempts" not in st.session_state:
-    st.session_state.attempts = 1
+    st.session_state.attempts = 0 # FIX: initialized session state attempt to 0 (bugged otherwise) with Github Copilot
 
 if "score" not in st.session_state:
     st.session_state.score = 0
@@ -121,6 +121,9 @@ with col3:
 if new_game:
     st.session_state.attempts = 0
     st.session_state.secret = random.randint(st.session_state.low, st.session_state.high)
+    st.session_state.score = 0 # FIX (124 - 131): Updated reset game logic with Github Copilot
+    st.session_state.status = "playing"
+    st.session_state.history = []
     st.success("New game started.")
     st.rerun()
 
